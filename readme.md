@@ -1,43 +1,21 @@
-# Übung - Nebenläufigkeit in Python
+Verteilte Systeme - Übungsaufgaben
+=====
 
-Implementieren Sie einen einfachen `DelayedBuffer`, der es ermöglicht Aufgaben (d. h. Objekte vom Typ `Callable`) erst nach einer bestimmten Zeit auszuführen. Die Klasse muss zwei Funktionen zur Verfügung stellen:
+Dieses Repository enthält alle Übungen aus dem Modul Verteilte Systeme an der DHBW Mannheim.
 
-```python
-submit(self, delay, fn, *args, **kwargs):
-    """
-    Die Funktion fn wird nach delay Sekunden ausgeführt wobei delay vom Typ Float ist.
-    args und kwargs sind die Argumente, die an fn übergeben werden.
-    """
+## Inhalt
 
-join(self):
-    """
-    Wartet bis alle Aufgaben abgearbeitet wurden.
-    """
-```
+1. **Einfacher HTTP-Client**
+    - Implementierung eines einfachen HTTP-Clients, der sich mit einem Server verbindet, eine Datei anfordert und die Antwort des Servers anzeigt.
+    - Speichern der Serverantwort in einer lokalen Datei und Überprüfung der korrekten Anzeige in einem Browser.
 
-Im folgenden sehen Sie eine mögliche Verwendung des Puffers:
+2. **Protokollaggregation**
+    - Entwicklung eines Python-basierten Servers zur zentralen Anzeige von Protokollmeldungen mehrerer Clients unter Verwendung von UDP.
 
-```python
-buffer = DelayedBuffer()
-buffer.submit(100 / 1000, ts_print, "Hello ", **{"end": "", "flush": True})
-buffer.submit(1000 / 1000, ts_print, "World!")
-buffer.submit(500 / 1000, ts_print, "of the ", **{"end": "", "flush": True})
-buffer.submit(200 / 1000, ts_print, "from ", **{"end": "", "flush": True})
-buffer.submit(300 / 1000, ts_print, "the other side ", **{"end": "", "flush": True})
-# ggf. await buffer.join() im Falle von Koroutinen
-buffer.join()
-print("Done.")
-```
+3. **Delayed Buffer**
+    - Implementierung eines einfachen `DelayedBuffer`, der es ermöglicht Aufgbaen (Objekte vom Typ `Callable`) erst nach einer bestimmten Zeit auszuführen.
+    - Implementierung mittels Threads, Threadpool und Koroutinen
 
-### Implementation mit Threads
-Implementieren Sie die Klasse `DelayedBuffer` mit Hilfe von Threads (und ggf. `Queues` bzw. Locks).  
-Implementieren Sie `ts_print` als Thread-sichere Variante von `print`.
+---
 
-### Implementation mit Threadpool
-Implementieren Sie die Klasse `DelayedBuffer` mit Hilfe eines `concurrent.futures.ThreadPool` (und
-ggf. `Queues` bzw. Locks).  
-Implementieren Sie `ts_print` als Thread-sichere Variante von print. Wählen Sie ggf. eine andere
-Implementierung als in der vorherigen Aufgabe.
-
-### Implementation mit Koroutinen
-Implementieren Sie die Klasse `DelayBuffer` mit Hilfe von Korutinen (und ggf. `asyncio.Queues`).
+Dieses Repository wird im Rahmen des Moduls Verteilte Systeme an der DHBW Mannheim verwaltet.
